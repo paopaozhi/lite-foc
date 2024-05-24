@@ -1,0 +1,2 @@
+[depend]
+ulog = { url = "https://github.com/rdpoor/ulog", version = "0.0.1" }

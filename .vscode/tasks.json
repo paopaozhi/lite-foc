@@ -1,0 +1,55 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "build",
+            "type": "process",
+            "command": "ninja",
+            "args": [
+                "-C",
+                "build/Debug"
+            ],
+            "group": {
+                "kind": "build"
+            },
+            "presentation": {
+                "reveal": "always"
+            }
+        },
+        {
+            "label": "clean",
+            "type": "process",
+            "command": "ninja",
+            "args": [
+                "-C",
+                "build/Debug",
+                "clean"
+            ],
+            "presentation": {
+                "reveal": "silent"
+            },
+            "group": {
+                "kind": "build"
+            }
+        },
+        {
+            "label": "flash firmware",
+            "type": "shell",
+            "command": "openocd",
+            "args": [
+                "-f",
+                "${workspaceFolder}\\openocd.cfg",
+                "-c \"program ./build/Debug/cmake-demo.elf preverify verify reset exit\""
+            ],
+            "dependsOn": [
+                "build"
+            ],
+            "presentation": {
+                "reveal": "silent"
+            },
+            "group": {
+                "kind": "build"
+            }
+        },
+    ]
+}
